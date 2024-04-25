@@ -1,0 +1,158 @@
+---
+title: 16S live analysis report
+date: '`r strftime(Sys.time(), format = "%B %d, %Y")`'
+output:
+  html_document:
+    theme: dark
+    toc: False
+    toc_depth: 2
+params:
+  path:
+    value: x
+  samplesheet:
+    value: x
+
+---
+
+<style type="text/css">
+.main-container {
+  margin: auto;
+}
+</style>
+
+```{r setup, include=FALSE}
+library("readxl")
+library("tidyverse")
+library("reshape2")
+library("viridis")
+library("knitr")
+```
+### Live analyse
+Analyse af 16S sekventeringsdata fra Oxford Nanopore. Prøverne bliver analyseret, så snart der er genereret 4000 reads for en enkelt prøve. 
+
+I tilfælde af blandingsflora eller stor andel "Unknown" species, afvent komplet analyse som genereres indenfor 2 timer af afsluttet kørsel.
+
+Den endelig rapport kan findes i sekventeringsmappen/../16S_output. Stien printes ved analysens afslutning.
+
+
+```{r Load and format data, echo=FALSE}
+# Load and format data
+path <- params$path
+full_abundance_table <- read.csv(paste0(path,"live_full_abundance_table.csv"),row.names = "X")
+
+relative_abundance <- full_abundance_table %>% select(!(contains("estimated.counts")))
+names(relative_abundance) <- gsub(pattern = "_abundance", replacement = "", x = names(relative_abundance))
+relative_abundance[is.na(relative_abundance)] <- 0
+```
+
+```{r Plot function, echo=FALSE}
+# Plot function
+make_plot <- function(abundance_df, plot_title, taxon_level, min_frac){
+  
+  abundance_df <- abundance_df %>% 
+    mutate(Taxon = case_when(
+      Abundance < min_frac  & Taxon != "Other" ~ "Other",
+      TRUE ~ as.character(Taxon)
+    ))
+  abundance_df <- aggregate(list(Abundance = abundance_df$Abundance), by=list(Taxon=abundance_df$Taxon, Sample=abundance_df$Sample), FUN=sum)
+  output_order_list <- unique(abundance_df$Taxon)
+  output_order_list <- output_order_list[output_order_list != "Other"]
+  abundance_df$Taxon <- factor(abundance_df$Taxon,levels=c(output_order_list,"Other"))
+  colours <- turbo(length(unique(abundance_df$Taxon)))
+  colours[length(colours)] <- "#808080"
+
+  abundance_plot = ggplot(abundance_df, aes(x = Sample, fill = Taxon, y = Abundance)) + 
+    geom_bar(stat = "identity", colour = "black") + 
+    theme(axis.text.x = element_text(angle = 90, size = 14, colour = "black", vjust = 0.5, hjust = 1, face= "bold"), 
+          axis.title.y = element_text(size = 16, face = "bold"), legend.title = element_text(size = 16, face = "bold"), 
+          legend.text = element_text(size = 12, face = "bold", colour = "black"), 
+          axis.text.y = element_text(colour = "black", size = 12, face = "bold"),
+          plot.title = element_text(colour = "black", size = 16, face = "bold")) + 
+    scale_y_continuous(expand = c(0,0)) + 
+    scale_fill_manual(values=colours) +
+    labs(title=plot_title, x = "", y = "Relative Abundance (%)", fill = taxon_level)
+  return(abundance_plot)
+}
+```
+
+```{r Complete table, echo=FALSE}
+drops <- c("phylum","clade","order","class","tax_id","superkingdom","species.group","subspecies","species.subgroup")
+abundance_table_display <- full_abundance_table[ , !(names(full_abundance_table) %in% drops)]
+
+abundance_table_display <- abundance_table_display %>% select(!(contains("abundance")))
+names(abundance_table_display) <- gsub(pattern = "_estimated.counts", replacement = "", x = names(abundance_table_display))
+abundance_table_display[is.na(abundance_table_display)] <- 0
+
+abundance_table_display <- abundance_table_display %>% 
+ mutate_if(is.numeric, round)
+remaining_columns <- setdiff(names(abundance_table_display), names(abundance_table_display)[1:3])
+abundance_table_display <- abundance_table_display[, c("family", "genus", "species", 
+                                                       setdiff(names(abundance_table_display),
+                                                               names(abundance_table_display)[1:3]))]
+kable(abundance_table_display, caption="Antal reads fordelt på taxa")
+
+```
+## Species for each sample
+OBS: Arter der udgør under 5 % i en prøve er klassificeret som "Other". Dette gøres for at reducere visuel støj. 
+
+```{r species plot, echo=FALSE}
+abundance_species <- relative_abundance %>% 
+  group_by(species) %>% 
+  dplyr::summarize(across(where(is.numeric), sum))
+## Neccesary to force dplyr here, regardless of load order it seems
+
+abundance_species <- melt(abundance_species, na.rm = FALSE,value.name = "Abundance", id = 'species') %>% 
+  rename(
+    Sample = variable,
+    Taxon=species
+  )
+
+
+abundance_species_plot <- make_plot(abundance_species,"Species in samples", "Species", 0.05)
+
+abundance_species_plot
+```
+
+## Genus for each sample
+OBS: Genus der udgør under 5 % i en prøve er klassificeret som "Other". Dette gøres for at reducere visuel støj. 
+
+```{r genus plot, echo=FALSE}
+abundance_genus <- relative_abundance %>% 
+  group_by(genus) %>% 
+  dplyr::summarize(across(where(is.numeric), sum))
+## Neccesary to force dplyr here, regardless of load order it seems
+
+#abundance_genus <- abundance_genus[!(abundance_genus$genus == "Unknowwn"), ]
+abundance_genus <- melt(abundance_genus, na.rm = FALSE,value.name = "Abundance", id = 'genus') %>% 
+  rename(
+    Sample = variable,
+    Taxon=genus
+  )
+
+
+abundance_genus_plot <- make_plot(abundance_genus,"Genus in samples", "Genus", 0.05)
+
+abundance_genus_plot
+```
+
+## Phylum for each sample
+OBS: Phylum  der udgør under 5 % i en prøve er klassificeret som "Other". Dette gøres for at reducere visuel støj. 
+
+```{r Phylum plot, echo=FALSE}
+abundance_phylum <- relative_abundance %>% 
+  group_by(phylum) %>% 
+  dplyr::summarize(across(where(is.numeric), sum))
+## Neccesary to force dplyr here, regardless of load order it seems
+
+#abundance_phylum <- abundance_phylum[!(abundance_phylum$phylum == "Unknowwn"), ]
+abundance_phylum <- melt(abundance_phylum, na.rm = FALSE,value.name = "Abundance", id = 'phylum') %>% 
+  rename(
+    Sample = variable,
+    Taxon=phylum
+  )
+
+
+abundance_phylum_plot <- make_plot(abundance_phylum,"Phylum in samples", "phylum", 0.05)
+
+abundance_phylum_plot
+```

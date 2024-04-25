@@ -1,0 +1,9 @@
+# General settings 
+rundir: "NA" # Defines where the raw uploads are placed.
+
+samplesheet: "NA"
+#human_reference: "/project/ClinicalMicrobio/faststorage/database/GRCh38.p14_genomic.fna"
+human_reference: "/Users/admin1/Downloads/GRCh38.p14_genomic.fna"
+emu_db: "/Users/admin1/Documents/KMA_AUH/Nanopore16s_workflow/emu_16s"
+#emu_db: "/project/ClinicalMicrobio/faststorage/database/emu_16s"
+live_analysis: True

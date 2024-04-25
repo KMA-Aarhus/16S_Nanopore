@@ -1,0 +1,4 @@
+name: emu
+dependencies:
+  - python = 3.10
+  - emu = 3.4.5

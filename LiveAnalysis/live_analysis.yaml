@@ -1,0 +1,16 @@
+name: live_analysis
+dependencies:
+ - pandas = 1.4.3
+ - numpy = 1.23.1
+ - openpyxl = 3.0.3
+ - samtools = 1.15.1
+ - minimap2 = 2.25
+ - emu = 3.4.5
+ - porechop = 0.2.4
+ - r-tidyverse = 2.0.0
+ - r-reshape2 = 1.4.4
+ - r-kableextra = 1.4.0
+ - r-viridis = 0.6.5
+ - r-readxl = 1.4.3
+ - r-knitr = 1.46
+ - r-base = 4.3.1

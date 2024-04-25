@@ -1,0 +1,118 @@
+Description,Scientific Name,Max Score,Total Score,Query Cover,E value,Per. ident,Acc. Len,Accession  
+"Salmonella bongori strain 85-0051 chromosome, complete genome",Salmonella bongori,46.1,46.1,100%,0.041,100,4487548,CP053416.1
+"Salmonella bongori serovar 48:z81:- strain 08-0158 chromosome, complete genome",Salmonella bongori serovar 48:z81:-,46.1,46.1,100%,0.041,100,4495420,CP053336.1
+"Salmonella sp. SCFS4 chromosome, complete genome",Salmonella sp. SCFS4,46.1,46.1,100%,0.041,100,4988969,CP051218.1
+"Salmonella bongori CFSAN000510 chromosome, complete genome",Salmonella bongori CFSAN000510,46.1,46.1,100%,0.041,100,4459434,CP045766.1
+"Salmonella bongori strain NCTC12419 genome assembly, chromosome: 1",Salmonella bongori,46.1,46.1,100%,0.041,100,4466174,LR134137.1
+"Salmonella sp. SSDFZ69 chromosome, complete genome",Salmonella sp. SSDFZ69,46.1,46.1,100%,0.041,100,4677170,CP034831.1
+"Salmonella bongori serovar 66:z41:- str. SA19983605, complete genome",Salmonella bongori serovar 66:z41:- str. SA19983605,46.1,46.1,100%,0.041,100,4468959,CP022120.1
+"Salmonella sp. CVCC 1806 chromosome, complete genome",Salmonella sp. CVCC 1806,46.1,46.1,100%,0.041,100,4694271,CP118542.1
+"Salmonella sp. SA15303 chromosome, complete genome",Salmonella sp. SA15303,46.1,46.1,100%,0.041,100,4848320,CP123924.1
+"Salmonella sp. SA14318 chromosome, complete genome",Salmonella sp. SA14318,46.1,46.1,100%,0.041,100,4712861,CP123282.1
+"Salmonella sp. SA17155 chromosome, complete genome",Salmonella sp. SA17155,46.1,46.1,100%,0.041,100,5041168,CP123280.1
+"Citrobacter sp. S171 chromosome, complete genome",Citrobacter enshiensis,46.1,46.1,100%,0.041,100,4915451,CP119862.1
+"Salmonella sp. 2018103 chromosome, complete genome",Salmonella sp. 2018103,46.1,46.1,100%,0.041,100,4610213,CP111029.1
+"Salmonella sp. 3C chromosome, complete genome",Salmonella sp. 3C,46.1,46.1,100%,0.041,100,4840545,CP104858.1
+"Salmonella sp. FORC89 chromosome, complete genome",Salmonella sp. FORC89,46.1,46.1,100%,0.041,100,4679660,CP029682.1
+"Salmonella bongori serovar 48:z41:-- str. RKS3044, complete genome",Salmonella bongori serovar 48:z41:-- str. RKS3044,46.1,46.1,100%,0.041,100,4394500,CP006692.1
+"Salmonella sp. JXY0409-18 chromosome, complete genome",Salmonella sp. JXY0409-18,46.1,46.1,100%,0.041,100,4600775,CP084216.1
+"Salmonella sp. A39 chromosome, complete genome",Salmonella sp. A39,46.1,46.1,100%,0.041,100,4894891,CP084194.1
+"Salmonella sp. A7 chromosome, complete genome",Salmonella sp. A7,46.1,46.1,100%,0.041,100,4662532,CP084001.1
+"Salmonella sp. A29-2 chromosome, complete genome",Salmonella sp. A29-2,46.1,46.1,100%,0.041,100,4885263,CP083731.1
+"Salmonella bongori strain 04-0440 chromosome, complete genome",Salmonella bongori,46.1,46.1,100%,0.041,100,4440439,CP035676.1
+"Salmonella bongori N268-08, complete genome",Salmonella bongori N268-08,46.1,46.1,100%,0.041,100,4683551,CP006608.1
+"Salmonella bongori serovar 40:z35:- strain CFSAN001045 chromosome, complete genome",Salmonella bongori serovar 40:z35:-,46.1,46.1,100%,0.041,100,4513187,CP074592.1
+"Salmonella sp. SJTUF14523 chromosome, complete genome",Salmonella sp. SJTUF14523,46.1,46.1,100%,0.041,100,4679991,CP074428.1
+"Salmonella sp. SJTUF15034 chromosome, complete genome",Salmonella sp. SJTUF15034,46.1,46.1,100%,0.041,100,4679426,CP074425.1
+"Salmonella bongori CFSAN000510 strain SGSC 3100 chromosome, complete genome",Salmonella bongori CFSAN000510,46.1,46.1,100%,0.041,100,4459473,CP074233.1
+"Salmonella sp. SAL-045 chromosome, complete genome",Salmonella sp. SAL-045,46.1,46.1,100%,0.041,100,4679327,CP071693.1
+"Salmonella sp. SAL-007 chromosome, complete genome",Salmonella sp. SAL-007,46.1,46.1,100%,0.041,100,4679742,CP071686.1
+"Salmonella sp. SAL-020 chromosome, complete genome",Salmonella sp. SAL-020,46.1,46.1,100%,0.041,100,4679997,CP071690.1
+"Citrobacter sp. R56 chromosome, complete genome",Citrobacter sp. R56,46.1,46.1,100%,0.041,100,4652769,CP069159.1
+"Salmonella bongori strain Se40 chromosome, complete genome",Salmonella bongori,46.1,46.1,100%,0.041,100,4459441,CP067369.1
+"Salmonella sp. SJTUF14076 chromosome, complete genome",Salmonella sp. SJTUF14076,46.1,46.1,100%,0.041,100,4721534,CP064674.1
+"Salmonella sp. SJTUF14146 chromosome, complete genome",Salmonella sp. SJTUF14146,46.1,46.1,100%,0.041,100,4786358,CP064672.1
+"Salmonella sp. SJTUF14152 chromosome, complete genome",Salmonella sp. SJTUF14152,46.1,46.1,100%,0.041,100,4995432,CP064671.1
+"Salmonella sp. SJTUF14154 chromosome, complete genome",Salmonella sp. SJTUF14154,46.1,46.1,100%,0.041,100,4744566,CP064666.1
+"Salmonella sp. SJTUF14178 chromosome, complete genome",Salmonella sp. SJTUF14178,46.1,46.1,100%,0.041,100,4835607,CP064661.1
+"Salmonella sp. SJTUF14170 chromosome, complete genome",Salmonella sp. SJTUF14170,46.1,46.1,100%,0.041,100,4835544,CP064663.1
+"Salmonella bongori NCTC 12419, culture collection SGSC SARC11, complete genome",Salmonella bongori NCTC 12419,46.1,46.1,100%,0.041,100,4460105,FR877557.1
+"Salmonella bongori tetrathionate subunit B (ttrB) gene, partial cds; tetrathionate reductase subunit C (ttrC) gene, complete cds; and tetrathionate subunit A (ttrA) gene, partial cds",Salmonella bongori,46.1,46.1,100%,0.041,100,1372,AY578066.1
+"Bradyrhizobium prioritasuperba strain BL16A chromosome, complete genome",Bradyrhizobium prioritasuperba,38.2,38.2,100%,10,95.65,9083454,CP135921.1
+"Scomber scombrus genome assembly, chromosome: 17",Scomber scombrus,36.2,68.4,100%,40,100,28861017,OY829934.1
+"Apteryx australis mantelli genome assembly AptMant0, scaffold scaffold43",Apteryx mantelli mantelli,36.2,68.4,100%,40,100,12684361,LK064721.1
+"Lepidonotus clava genome assembly, chromosome: 17",Lepidonotus clava,34.2,66.4,100%,158,100,43840983,OW387149.1
+"Branchiostoma lanceolatum genome assembly, chromosome: 4",Branchiostoma lanceolatum,34.2,66.4,100%,158,100,31719604,OV696689.1
+"Euclidia mi genome assembly, chromosome: 7",Euclidia mi,36.2,209,91%,40,100,99488388,OX123187.2
+"Coregonus sp. 'balchen' genome assembly, chromosome: 19",Coregonus sp. 'balchen',34.2,34.2,91%,158,95.24,59907985,LR778271.1
+"PREDICTED: Oncorhynchus kisutch filamin-C-like (LOC109867052), misc_RNA",Oncorhynchus kisutch,34.2,34.2,91%,158,95.24,9188,XR_004204816.1
+"PREDICTED: Gadus morhua pleckstrin homology and FYVE domain containing 2 (plekhf2), mRNA",Gadus morhua,34.2,34.2,91%,158,95.24,5088,XM_030370034.1
+"Gadus morhua genome assembly, chromosome: 11",Gadus morhua,34.2,34.2,91%,158,95.24,30713045,LR633953.1
+"PREDICTED: Salmo trutta filamin-C-like (LOC115197662), transcript variant X2, mRNA",Salmo trutta,34.2,34.2,91%,158,95.24,9169,XM_029759409.1
+"PREDICTED: Salmo trutta filamin-C-like (LOC115197662), transcript variant X1, mRNA",Salmo trutta,34.2,34.2,91%,158,95.24,9304,XM_029759408.1
+"PREDICTED: Oncorhynchus nerka filamin-C-like (LOC115119787), mRNA",Oncorhynchus nerka,34.2,34.2,91%,158,95.24,9174,XM_029648660.1
+"Salmo trutta genome assembly, chromosome: 7",Salmo trutta,34.2,34.2,91%,158,95.24,59837330,LR584430.1
+"Parambassis ranga genome assembly, chromosome: 15",Parambassis ranga,34.2,34.2,91%,158,95.24,22291100,LR131965.1
+"Cottoperca gobio genome assembly, chromosome: 23",Cottoperca gobio,34.2,34.2,91%,158,95.24,15932363,LR131931.1
+Anopheles stephensi strain Indian chromosome 3R,Anopheles stephensi,34.2,34.2,91%,158,95.24,43030556,CP032301.1
+Anopheles stephensi strain SDA-500 chromosome 3R,Anopheles stephensi,34.2,34.2,91%,158,95.24,51436555,CP032234.1
+"Botrytis cinerea B05.10 hypothetical protein (BCIN_10g01700), mRNA",Botrytis cinerea B05.10,34.2,34.2,91%,158,95.24,2039,XM_024695461.1
+"PREDICTED: Salvelinus alpinus filamin-C-like (LOC112071583), mRNA",Salvelinus alpinus,34.2,34.2,91%,158,95.24,9201,XM_024139022.1
+Cucumis melo isolate PI 511890 chromosome 2,Cucumis melo,34.2,34.2,91%,158,95.24,25108395,CP136103.1
+"Nannobrachium achirus genome assembly, chromosome: 16",Nannobrachium achirus,34.2,34.2,91%,158,95.24,64448347,OY997653.1
+"Megamerina dolium genome assembly, chromosome: 6",Megamerina dolium,34.2,66.4,91%,158,95.24,63020570,OY978530.1
+"Ogataea polymorpha uncharacterized protein (OGAPODRAFT_16675), mRNA",Ogataea polymorpha,34.2,34.2,91%,158,95.24,1278,XM_018354590.1
+Botrytis fabae isolate G12 chromosome Bfab10,Botrytis fabae,34.2,34.2,91%,158,95.24,2700064,CP136215.1
+"PREDICTED: Gadus macrocephalus pleckstrin homology domain containing, family F (with FYVE domain) member 2 (plekhf2), mRNA",Gadus macrocephalus,34.2,34.2,91%,158,95.24,5097,XM_060064216.1
+"Eutrigla gurnardus genome assembly, chromosome: 1",Eutrigla gurnardus,34.2,34.2,91%,158,95.24,37750515,OY741264.1
+"Raja brachyura genome assembly, chromosome: 34",Raja brachyura,34.2,34.2,91%,158,95.24,30155470,OY740814.1
+"Aphrophora alni genome assembly, chromosome: 10",Aphrophora alni,34.2,34.2,91%,158,95.24,89344112,OY740775.1
+"Thysanoteuthis rhombus genome assembly, chromosome: 26",Thysanoteuthis rhombus,34.2,66.4,91%,158,100,54257446,OY735223.1
+Gadus macrocephalus isolate Gmac_GOA_2020 chromosome 17,Gadus macrocephalus,34.2,98.6,91%,158,95.24,16295523,CP133541.1
+Gadus macrocephalus isolate Gmac_GOA_2020 chromosome 11,Gadus macrocephalus,34.2,34.2,91%,158,95.24,26267057,CP133535.1
+Gadus macrocephalus isolate Gmac_GOA_2020 chromosome 17,Gadus macrocephalus,34.2,66.4,91%,158,95.24,15799731,CP133518.1
+Gadus macrocephalus isolate Gmac_GOA_2020 chromosome 11,Gadus macrocephalus,34.2,34.2,91%,158,95.24,26541203,CP133512.1
+Diaphorina citri isolate DC chromosome 2,Diaphorina citri,34.2,34.2,91%,158,95.24,56855840,CP125322.1
+"PREDICTED: Nicotiana tabacum potassium channel SKOR-like (LOC107806668), transcript variant X2, mRNA",Nicotiana tabacum,34.2,34.2,91%,158,95.24,2110,XM_016630871.1
+"PREDICTED: Nicotiana tabacum potassium channel SKOR-like (LOC107806668), transcript variant X1, mRNA",Nicotiana tabacum,34.2,34.2,91%,158,95.24,2227,XM_016630870.1
+"Venusia cambrica genome assembly, chromosome: 11",Venusia cambrica,34.2,34.2,91%,158,95.24,13861197,OX596045.1
+"PREDICTED: Salvelinus fontinalis filamin-C-like (LOC129861987), transcript variant X2, mRNA",Salvelinus fontinalis,34.2,34.2,91%,158,95.24,9186,XM_055933241.1
+"PREDICTED: Salvelinus fontinalis filamin-C-like (LOC129861987), transcript variant X1, mRNA",Salvelinus fontinalis,34.2,34.2,91%,158,95.24,9321,XM_055933240.1
+"Pollachius pollachius genome assembly, chromosome: 1",Pollachius pollachius,34.2,34.2,91%,158,95.24,53464670,OX465124.1
+"Pipistrellus pygmaeus genome assembly, chromosome: 13",Pipistrellus pygmaeus,34.2,34.2,91%,158,95.24,55708544,OX465315.1
+Serratia liquefaciens isolate PPE016 chromosome,Serratia liquefaciens,34.2,34.2,91%,158,95.24,5347174,CP088930.1
+"PREDICTED: Oncorhynchus keta filamin-C-like (LOC118396076), transcript variant X2, mRNA",Oncorhynchus keta,34.2,34.2,91%,158,95.24,9149,XM_052466540.1
+"PREDICTED: Oncorhynchus keta filamin-C-like (LOC118396076), transcript variant X1, mRNA",Oncorhynchus keta,34.2,34.2,91%,158,95.24,9284,XM_052466539.1
+"Acronicta leporina genome assembly, chromosome: W",Acronicta leporina,34.2,34.2,91%,158,95.24,19866531,OX366511.1
+"Botrytis cinerea B05.10 chromosome BCIN10, complete sequence",Botrytis cinerea B05.10,34.2,34.2,91%,158,95.24,2419276,CP009814.1
+"Luzula sylvatica genome assembly, chromosome: 3",Luzula sylvatica,34.2,34.2,91%,158,95.24,74526441,OX326958.1
+"Cucumis melo genomic chromosome, chr_2",Cucumis melo,34.2,34.2,91%,158,95.24,26193771,LN713256.1
+"Cucumis melo genomic scaffold, anchoredscaffold00012",Cucumis melo,34.2,34.2,91%,158,95.24,6700576,LN681808.1
+"Telmatherina bonti genome assembly, chromosome: 13",Telmatherina bonti,34.2,34.2,91%,158,95.24,41523244,OW121833.1
+Botrytis cinerea strain Sl3 chromosome 10,Botrytis cinerea,34.2,34.2,91%,158,95.24,2475281,CP080988.1
+Botrytis cinerea strain Vv3 chromosome 10,Botrytis cinerea,34.2,34.2,91%,158,95.24,2580445,CP080970.1
+"PREDICTED: Oncorhynchus gorbuscha filamin-C-like (LOC124032290), transcript variant X2, mRNA",Oncorhynchus gorbuscha,34.2,34.2,91%,158,95.24,9158,XM_046344573.1
+"PREDICTED: Oncorhynchus gorbuscha filamin-C-like (LOC124032290), transcript variant X1, mRNA",Oncorhynchus gorbuscha,34.2,34.2,91%,158,95.24,9294,XM_046344563.1
+"PREDICTED: Salmo salar filamin-C (LOC106561692), transcript variant X3, mRNA",Salmo salar,34.2,34.2,91%,158,95.24,9163,XM_014125900.2
+"PREDICTED: Salmo salar filamin-C (LOC106561692), transcript variant X2, mRNA",Salmo salar,34.2,34.2,91%,158,95.24,9250,XM_014125899.2
+"PREDICTED: Salmo salar filamin-C (LOC106561692), transcript variant X1, mRNA",Salmo salar,34.2,34.2,91%,158,95.24,9298,XM_014125898.2
+"PREDICTED: Coregonus clupeaformis filamin-C (LOC121531594), transcript variant X2, mRNA",Coregonus clupeaformis,34.2,34.2,91%,158,95.24,9318,XM_041836883.2
+"PREDICTED: Coregonus clupeaformis filamin-C (LOC121531594), transcript variant X1, mRNA",Coregonus clupeaformis,34.2,34.2,91%,158,95.24,9453,XM_041836882.2
+Ogataea polymorpha strain Hu-11 chromosome 4,Ogataea polymorpha,34.2,34.2,91%,158,95.24,1315961,CP073036.1
+"PREDICTED: Oncorhynchus tshawytscha filamin-C-like (LOC112219043), mRNA",Oncorhynchus tshawytscha,34.2,34.2,91%,158,95.24,9182,XM_042301844.1
+Ogataea polymorpha strain CBS 4732 chromosome 4,Ogataea polymorpha,34.2,34.2,91%,158,95.24,1317609,CP060325.1
+"Trachurus trachurus genome assembly, chromosome: 14",Trachurus trachurus,34.2,34.2,91%,158,95.24,33713437,LR991640.1
+"Blastobasis lacticolella genome assembly, chromosome: 27",Blastobasis lacticolella,34.2,34.2,91%,158,95.24,12625560,LR990066.1
+"PREDICTED: Salvelinus namaycush filamin-C-like (LOC120066495), mRNA",Salvelinus namaycush,34.2,34.2,91%,158,95.24,8690,XM_039017908.1
+"PREDICTED: Oncorhynchus mykiss filamin-C (LOC110502465), transcript variant X2, mRNA",Oncorhynchus mykiss,34.2,34.2,91%,158,95.24,9159,XM_036960029.1
+"PREDICTED: Oncorhynchus mykiss filamin-C (LOC110502465), transcript variant X1, mRNA",Oncorhynchus mykiss,34.2,34.2,91%,158,95.24,9294,XM_036960028.1
+Botryotinia fuckeliana T4 SupSuperContig_43_186_1 genomic supercontig,Botrytis cinerea T4,34.2,34.2,91%,158,95.24,654918,FQ790350.1
+Botrytis cinerea strain T4 cDNA library,Botrytis cinerea,34.2,34.2,91%,158,95.24,420,AL116882.1
+"Patella vulgata genome assembly, chromosome: 7",Patella vulgata,32.2,64.4,91%,623,100,68900667,OW026354.2
+"Caprimulgus europaeus genome assembly, chromosome: 8",Caprimulgus europaeus,32.2,64.4,91%,623,100,50913645,OU015531.1
+"Poecilia reticulata genome assembly, chromosome: 3",Poecilia reticulata,32.2,64.4,91%,623,100,34494140,LR880647.1
+"Bordetella flabilis strain AU10664 chromosome, complete genome",Bordetella flabilis,36.2,36.2,95%,40,95.45,5835727,CP016172.1
+"Argentina silus genome assembly, chromosome: X",Argentina silus,34.2,66.4,95%,158,100,54096584,OX637366.1
+"Alcis repandata genome assembly, chromosome: 30",Alcis repandata,34.2,66.4,95%,158,100,6098516,OX421252.1
+"Epiblema foenella genome assembly, chromosome: 8",Epiblema foenella,32.2,64.4,95%,623,100,24741055,OY747104.1
+"Esperia sulphurella genome assembly, chromosome: 24",Esperia sulphurella,32.2,64.4,95%,623,95,10956773,OX352281.1

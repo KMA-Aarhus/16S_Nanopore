@@ -1,0 +1,6 @@
+name: qc
+dependencies:
+  - nanostat = 1.6.0
+  - qualimap = 2.3
+  - samtools = 1.20
+

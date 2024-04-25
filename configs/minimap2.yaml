@@ -1,0 +1,4 @@
+name: minimap2
+dependencies:
+  - minimap2 = 2.28
+  - samtools = 1.20
