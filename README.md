@@ -26,7 +26,7 @@ https://docs.conda.io/en/latest/miniconda.html.
 https://openpyxl.readthedocs.io/en/stable/.  
 https://snakemake.readthedocs.io/en/stable/. 
 
-
+Requires a downloaded emu 16S database and human reference. These should be specified in the config.yaml file.
 
 ### Install with git
 ```

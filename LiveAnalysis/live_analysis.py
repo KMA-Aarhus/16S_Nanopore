@@ -182,7 +182,7 @@ def start_covermon():
                 subprocess.run(['mv', 'scripts/live_report.html', out_base])
             if open_report == False:
                 print("open_report = ", open_report, ". Opening report")
-                #subprocess.run("gnome-terminal --tab -- browser-sync start -w --no-notify -s \"" + out_base +"\" --host 127.0.0.1 --port 9000 --index \"live_report.html\"", shell=True)        
+                subprocess.run("gnome-terminal --tab -- browser-sync start -w --no-notify -s \"" + out_base +"\" --host 127.0.0.1 --port 9000 --index \"live_report.html\"", shell=True)        
                 open_report = True
         return open_report
 

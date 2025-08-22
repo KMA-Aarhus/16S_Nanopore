@@ -210,13 +210,13 @@ if config["live_analysis"]:
     #os.system("rm ~/Nanopore16S/LiveAnalysis.flag") 
     print(f"Starting analysis in the background ... ")
     live_analysis_sh = open("start_analysis.sh", "w")
-    command = f"#!/bin/bash{nl}cd /Users/admin1/Documents/KMA_AUH/Nanopore16s_workflow/LiveAnalysis{nl}mamba activate live_analysis {nl}python live_analysis.py {samplesheet} {rundir} {emu_db}"
+    command = f"#!/bin/bash{nl}source ~/miniconda3/etc/profile.d/conda.sh{nl}cd ~/16S_Nanopore/LiveAnalysis{nl}conda activate live_analysis {nl}python live_analysis.py {samplesheet} {rundir} {emu_db}"
     print(command)
     live_analysis_sh.write(command)
     live_analysis_sh.close()
     # Start the sequence monitoring in a new terminal
-    os.system("osascript -e \'tell app \"Terminal\" to do script \" source /Users/admin1/Documents/KMA_AUH/Nanopore16s_workflow/start_analysis.sh\"\'")
-    #os.system("gnome-terminal --tab -- bash start_analysis.sh")
+    #os.system("osascript -e \'tell app \"Terminal\" to do script \" source ~/16S_Nanopore/start_analysis.sh\"\'")
+    os.system("gnome-terminal --tab -- bash start_analysis.sh")
 
 #############
 
