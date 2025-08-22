@@ -33,7 +33,7 @@ library("knitr")
 ### Analyse
 Analyse af 16S sekventeringsdata fra Oxford Nanopore. Dette er den endelige raport som bliver generet efter kørslen er afsluttet.
 
-```{r Load and format data, echo=FALSE}
+```{r Load and format data, echo=FALSE, warning=FALSE}
 # Load and format data
 
 full_abundance_table <- read.csv(params$full_abundance_table, row.names = "X")
@@ -47,7 +47,8 @@ samplesheet <- read_excel(params$samplesheet)
 path <- params$path
 #path = "/Users/admin1/Documents/KMA_AUH/Nanopore16s_workflow/test_data/no_sample/20220629_0931_MC-113039_FAT51411_0d48cde3/16s_output"
 ```
-```{r Set up display table, echo=FALSE}
+
+```{r Set up display table, echo=FALSE, warning=FALSE}
 drops <- c("phylum","clade","order","class","tax_id","superkingdom","species.group","subspecies","species.subgroup")
 abundance_table_display <- full_abundance_table[ , !(names(full_abundance_table) %in% drops)]
 
@@ -65,7 +66,7 @@ abundance_table_display <- abundance_table_display[, c("family", "genus", "speci
 
 ```
 
-```{r set up samplesheet for display, echo=FALSE}
+```{r set up samplesheet for display, echo=FALSE, warning=FALSE}
 no_reads <- c()
 mean_rl = c()
 no_mapped_reads = c()
@@ -95,11 +96,11 @@ samplesheet <- samplesheet %>%
 
 ```
 
-```{r sample QC table, echo=FALSE}
+```{r sample QC table, echo=FALSE, warning=FALSE}
 kable(samplesheet, caption="QC tabel")
 ```
 
-```{r Plot function, echo=FALSE}
+```{r Plot function, echo=FALSE, warning=FALSE}
 # Plot function
 make_plot <- function(abundance_df, plot_title, taxon_level, min_frac){
   
@@ -133,7 +134,7 @@ make_plot <- function(abundance_df, plot_title, taxon_level, min_frac){
 ## Species for each sample
 OBS: Arter der udgør under 5 % i en prøve er klassificeret som "Other". Dette gøres for at reducere visuel støj. 
 
-```{r species plot, echo=FALSE}
+```{r species plot, echo=FALSE, warning=FALSE}
 abundance_species <- relative_abundance %>% 
   group_by(species) %>% 
   dplyr::summarize(across(where(is.numeric), sum))
@@ -154,7 +155,7 @@ abundance_species_plot
 ## Genus for each sample
 OBS: Genus der udgør under 5 % i en prøve er klassificeret som "Other". Dette gøres for at reducere visuel støj. 
 
-```{r genus plot, echo=FALSE}
+```{r genus plot, echo=FALSE, warning=FALSE}
 abundance_genus <- relative_abundance %>% 
   group_by(genus) %>% 
   dplyr::summarize(across(where(is.numeric), sum))
@@ -176,7 +177,7 @@ abundance_genus_plot
 ## Phylum for each sample
 OBS: Phylum  der udgør under 5 % i en prøve er klassificeret som "Other". Dette gøres for at reducere visuel støj. 
 
-```{r Phylum plot, echo=FALSE}
+```{r Phylum plot, echo=FALSE, warning=FALSE}
 abundance_phylum <- relative_abundance %>% 
   group_by(phylum) %>% 
   dplyr::summarize(across(where(is.numeric), sum))
@@ -194,6 +195,6 @@ abundance_phylum_plot <- make_plot(abundance_phylum,"Phylum in samples", "phylum
 
 abundance_phylum_plot
 ```
-```{r Complete taxonomy table, echo=FALSE}
+```{r Complete taxonomy table, echo=FALSE, warning=FALSE}
 kable(abundance_table_display, caption="Antal reads fordelt på taxa")
 ```

@@ -35,7 +35,7 @@ I tilfælde af blandingsflora eller stor andel "Unknown" species, afvent komplet
 Den endelig rapport kan findes i sekventeringsmappen/../16S_output. Stien printes ved analysens afslutning.
 
 
-```{r Load and format data, echo=FALSE}
+```{r Load and format data, echo=FALSE, warning=FALSE}
 # Load and format data
 path <- params$path
 full_abundance_table <- read.csv(paste0(path,"live_full_abundance_table.csv"),row.names = "X")
@@ -45,7 +45,7 @@ names(relative_abundance) <- gsub(pattern = "_abundance", replacement = "", x = 
 relative_abundance[is.na(relative_abundance)] <- 0
 ```
 
-```{r Plot function, echo=FALSE}
+```{r Plot function, echo=FALSE, warning=FALSE}
 # Plot function
 make_plot <- function(abundance_df, plot_title, taxon_level, min_frac){
   
@@ -75,7 +75,7 @@ make_plot <- function(abundance_df, plot_title, taxon_level, min_frac){
 }
 ```
 
-```{r Complete table, echo=FALSE}
+```{r Complete table, echo=FALSE, warning=FALSE}
 drops <- c("phylum","clade","order","class","tax_id","superkingdom","species.group","subspecies","species.subgroup")
 abundance_table_display <- full_abundance_table[ , !(names(full_abundance_table) %in% drops)]
 
