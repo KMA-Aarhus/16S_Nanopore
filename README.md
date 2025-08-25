@@ -52,7 +52,7 @@ snakemake --config rundir=<path_to_rundir>  samplesheet=<path_to_samplesheet>/  
 
 If sequencing data is already generated it is possible to run on GenomeDK. To do so Set up an alias for snakemake to run on slurm:
 ```
-alias snakeslurm='mkdir -p logs/old; mv logs/*.{err,out} logs/old 2> /dev/null; snakemake --profile configs/slurm --use-conda --conda-frontend mamba'
+alias snakeslurm='mkdir -p logs/old; mv logs/*.{err,out} logs/old 2> /dev/null; snakemake --profile configs/slurm --use-conda --conda-frontend mamba --config live_analysis=False'
 ```
 
 

@@ -1,9 +1,0 @@
-name: assembleqc2
-channels:
-  - bioconda
-  - conda-forge
-  - mamba
-dependencies:
-  - porechop = 0.2.4
-#  - seqtk = 1.3
-

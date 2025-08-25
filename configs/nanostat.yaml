@@ -1,7 +1,6 @@
-name: emu
+name: nanoqc
 channels:
   - conda-forge
   - bioconda
 dependencies:
-  - python = 3.10
-  - emu = 3.4.5
+  - nanostat = 1.6.0

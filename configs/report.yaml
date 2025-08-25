@@ -1,4 +1,7 @@
 name: report
+channels:
+  - conda-forge
+  - bioconda
 dependencies:
  - r-tidyverse = 2.0.0
  - r-reshape2 = 1.4.4

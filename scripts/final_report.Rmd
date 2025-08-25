@@ -28,7 +28,6 @@ library("tidyverse")
 library("reshape2")
 library("viridis")
 library("knitr")
-library("knitr")
 ```
 ### Analyse
 Analyse af 16S sekventeringsdata fra Oxford Nanopore. Dette er den endelige raport som bliver generet efter kørslen er afsluttet.
@@ -36,7 +35,7 @@ Analyse af 16S sekventeringsdata fra Oxford Nanopore. Dette er den endelige rapo
 ```{r Load and format data, echo=FALSE, warning=FALSE}
 # Load and format data
 
-full_abundance_table <- read.csv(params$full_abundance_table, row.names = "X")
+full_abundance_table <- read.csv(normalizePath(params$full_abundance_table), row.names = "X")
 
 relative_abundance <- full_abundance_table %>% select(!(contains("estimated.counts")))
 names(relative_abundance) <- gsub(pattern = "_abundance", replacement = "", x = names(relative_abundance))

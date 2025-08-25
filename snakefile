@@ -246,7 +246,6 @@ rule all:
         expand(["{out_base}/{sample_id}/merged_reads/{sample_id}.fastq.gz", \
                 "{out_base}/{sample_id}/merged_reads/{sample_id}_nanostat", \
                 "{out_base}/{sample_id}/merged_reads/{sample_id}_clean.fastq.gz", \
-                "{out_base}/{sample_id}/trimmed/{sample_id}_trimmed.fastq.gz", \
                 "{out_base}/{sample_id}/emu_abundance/{sample_id}_rel-abundance.tsv", \
                 "{out_base}/family_abundance_table.csv", \
                 "{out_base}/final_report.html" \
@@ -277,7 +276,7 @@ rule nanostat:
         "{out_base}/{sample_id}/merged_reads/{sample_id}.fastq.gz"
     output: 
         "{out_base}/{sample_id}/merged_reads/{sample_id}_nanostat"
-    conda: "configs/qc.yaml"
+    conda: "configs/nanostat.yaml"
     threads: 1
     shell: """
 
@@ -304,27 +303,13 @@ rule remove_human:
     """
 
 
-# Trim adapters
-rule trim_adapt:
-    input: 
-        "{out_base}/{sample_id}/merged_reads/{sample_id}_clean.fastq.gz"
-    output: 
-        "{out_base}/{sample_id}/trimmed/{sample_id}_trimmed.fastq.gz"
-    conda: "configs/porechop.yaml"
-    threads: 4
-    shell: """
 
-    mkdir -p {out_base}/{wildcards.sample_id}/trimmed
-
-    porechop -i {input} --format fastq.gz -t 4 -o {output}
-
-    """
 
 
 
 rule emu_abundance:
     input: 
-        "{out_base}/{sample_id}/trimmed/{sample_id}_trimmed.fastq.gz"
+        "{out_base}/{sample_id}/merged_reads/{sample_id}_clean.fastq.gz"
     output: 
         rel_abundance = "{out_base}/{sample_id}/emu_abundance/{sample_id}_rel-abundance.tsv",
         alignments = "{out_base}/{sample_id}/emu_abundance/{sample_id}_emu_alignments.sam"
@@ -347,6 +332,7 @@ rule aggregate_compare:
         species = "{out_base}/species_abundance_table.csv",
         genus = "{out_base}/genus_abundance_table.csv",
         family = "{out_base}/family_abundance_table.csv"
+    conda: "configs/report.yaml"
     threads: 1
     shell: """
     mkdir -p {out_base}/emu_abundance_tables
@@ -364,8 +350,15 @@ rule final_report:
     conda: "configs/report.yaml"
     threads: 1
     shell: """
-        Rscript -e \"rmarkdown::render(input = \'scripts/final_report.Rmd\',params = list(full_abundance_table = \'{input.full}\', samplesheet = \'{samplesheet}\', path = \'{out_base}/\'))\"
-        mv scripts/final_report.html {out_base}
+
+        cp scripts/final_report.Rmd .
+
+        Rscript -e \"rmarkdown::render(input = \'final_report.Rmd\',params = list(
+        full_abundance_table = \'{input.full}\', 
+        samplesheet = \'{samplesheet}\', 
+        path = \'{out_base}/\'))\"
+        mv final_report.html {out_base}
+        rm final_report.Rmd
 
         """
 
