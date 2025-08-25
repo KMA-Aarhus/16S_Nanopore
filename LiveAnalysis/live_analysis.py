@@ -248,7 +248,7 @@ def start_covermon():
     # Keep track of processed files to avoid starting from scratch if script is terminated
     if exists(f"{out_base}/live_report.html") and open_report == False:
         # Starts browser-sync in a new terminal. This will not work on windows or macOS.
-        subprocess.run("gnome-terminal --tab -- browser-sync start -w --no-notify -s \"" + out_base +"\" --host 127.0.0.1 --port 9000 --index \"plot_cov.html\"", shell=True)                
+        subprocess.run("gnome-terminal --tab -- browser-sync start -w --no-notify -s \"" + out_base +"\" --host 127.0.0.1 --port 9000 --index \"live_report.html\"", shell=True)                
         open_report = True
 
 
