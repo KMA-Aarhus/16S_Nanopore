@@ -101,7 +101,7 @@ for i in ["barcode", "sample_id"]:
         raise Exception(f"The sample sheet is missing a necessary column. The sample sheet must contain the column {i}, but it only contains {df.columns.tolist()}")
 print("✓")
 
-acceptable_barcodes = [f"NB{i:02d}" for i in range(1,97)]
+acceptable_barcodes = [f"NB{i:02d}" for i in range(1,97)]+[f"RB{i:02d}" for i in range(1,97)] # Accepts barcodes formatted as both NB or RB barcodes.
 
 print("Checking that the barcodes are correctly formatted and that the barcodes are unique... ", end = "", flush = True)
 for i in df["barcode"]:
@@ -186,7 +186,12 @@ disk_barcodes_list  = sorted(glob.glob(fastq_pass_base + "/barcode*")) # Find al
 disk_barcodes_df = pd.DataFrame({'barcode_path': disk_barcodes_list})
 
 disk_barcodes_df = disk_barcodes_df.assign(barcode_basename = [i.split("/")[-1] for i in disk_barcodes_df["barcode_path"]])
-disk_barcodes_df = disk_barcodes_df.assign(barcode = ["NB" + i[-2:] for i in disk_barcodes_df["barcode_path"]])
+if "RB" in df["barcode"][0]:
+    disk_barcodes_df = disk_barcodes_df.assign(barcode = ["RB" + i[-2:] for i in disk_barcodes_df["barcode_path"]])
+elif "NB" in df["barcode"][0]:
+    disk_barcodes_df = disk_barcodes_df.assign(barcode = ["NB" + i[-2:] for i in disk_barcodes_df["barcode_path"]])
+else:
+    raise Exception(f"Barcodes in samplesheet are not acceptable")
 
 
 
@@ -246,6 +251,9 @@ rule all:
         expand(["{out_base}/{sample_id}/merged_reads/{sample_id}.fastq.gz", \
                 "{out_base}/{sample_id}/merged_reads/{sample_id}_nanostat", \
                 "{out_base}/{sample_id}/merged_reads/{sample_id}_clean.fastq.gz", \
+                "{out_base}/{sample_id}/merged_reads/{sample_id}_nanostat_post_host_filter", \
+                "{out_base}/{sample_id}/merged_reads/{sample_id}_clean_sampled.fastq.gz", \
+                "{out_base}/{sample_id}/merged_reads/{sample_id}_nanostat_filtered_sampled", \
                 "{out_base}/{sample_id}/emu_abundance/{sample_id}_rel-abundance.tsv", \
                 "{out_base}/family_abundance_table.csv", \
                 "{out_base}/final_report.html" \
@@ -283,6 +291,7 @@ rule nanostat:
     NanoStat --fastq {input} -o {out_base}/{wildcards.sample_id}/merged_reads/ -n {wildcards.sample_id}_nanostat
 
     """
+# NanoStat needs the output dir and the output name as separat items for some reason
 
 rule remove_human:
     input:
@@ -302,14 +311,50 @@ rule remove_human:
 
     """
 
+rule nanostat_post_host_filter:
+    input:
+        "{out_base}/{sample_id}/merged_reads/{sample_id}_clean.fastq.gz"
+    output: 
+        "{out_base}/{sample_id}/merged_reads/{sample_id}_nanostat_post_host_filter"
+    conda: "configs/nanostat.yaml"
+    threads: 1
+    shell: """
 
+    NanoStat --fastq {input} -o {out_base}/{wildcards.sample_id}/merged_reads/ -n {wildcards.sample_id}_nanostat_post_host_filter
 
+    """
 
+rule subsample:
+    input:
+        "{out_base}/{sample_id}/merged_reads/{sample_id}_clean.fastq.gz"
+    output: 
+        subsampled = "{out_base}/{sample_id}/merged_reads/{sample_id}_clean_sampled.fastq.gz"
+    conda: "configs/seqtk.yaml"
+    threads: 1
+    shell: """
+    
+    seqtk sample -s100 {input} 10000 | gzip > {output.subsampled}
+
+    """
+# Note that the subsampling uses seed. If you wish to inspect differences between repeated runs, the seed should be removed.
+
+rule nanostat_post_subsampling:
+    input:
+        "{out_base}/{sample_id}/merged_reads/{sample_id}_clean_sampled.fastq.gz"
+    output: 
+        "{out_base}/{sample_id}/merged_reads/{sample_id}_nanostat_filtered_sampled"
+    conda: "configs/nanostat.yaml"
+    threads: 1
+    shell: """
+
+    NanoStat --fastq {input} -o {out_base}/{wildcards.sample_id}/merged_reads/ -n {wildcards.sample_id}_nanostat_filtered_sampled
+
+    """
 
 
 rule emu_abundance:
     input: 
-        "{out_base}/{sample_id}/merged_reads/{sample_id}_clean.fastq.gz"
+        "{out_base}/{sample_id}/merged_reads/{sample_id}_clean_sampled.fastq.gz"
     output: 
         rel_abundance = "{out_base}/{sample_id}/emu_abundance/{sample_id}_rel-abundance.tsv",
         alignments = "{out_base}/{sample_id}/emu_abundance/{sample_id}_emu_alignments.sam"
@@ -344,7 +389,8 @@ rule aggregate_compare:
 rule final_report:
     input:
         full = "{out_base}/full_abundance_table.csv",
-        nanostat = expand("{out_base}/{sample_id}/merged_reads/{sample_id}_nanostat", out_base = out_base, sample_id = df["sample_id"])
+        nanostat = expand("{out_base}/{sample_id}/merged_reads/{sample_id}_nanostat", out_base = out_base, sample_id = df["sample_id"]),
+        nanostat_sampled = expand("{out_base}/{sample_id}/merged_reads/{sample_id}_nanostat_filtered_sampled", out_base = out_base, sample_id = df["sample_id"])
     output:
         "{out_base}/final_report.html"
     conda: "configs/report.yaml"

@@ -42,6 +42,7 @@ names(relative_abundance) <- gsub(pattern = "_abundance", replacement = "", x = 
 relative_abundance[is.na(relative_abundance)] <- 0
 
 samplesheet <- read_excel(params$samplesheet)
+names(samplesheet) <- tolower(names(samplesheet))
 #samplesheet <- read_excel('/Users/admin1/Documents/KMA_AUH/Nanopore16s_workflow/test_data/test_sample.xlsx')
 path <- params$path
 #path = "/Users/admin1/Documents/KMA_AUH/Nanopore16s_workflow/test_data/no_sample/20220629_0931_MC-113039_FAT51411_0d48cde3/16s_output"
@@ -65,8 +66,10 @@ abundance_table_display <- abundance_table_display[, c("family", "genus", "speci
 
 ```
 
-```{r set up samplesheet for display, echo=FALSE, warning=FALSE}
+```{r set up samplesheet for display, echo=FALSE, warning=FALSE, include=FALSE}
 no_reads <- c()
+no_reads_post_filter <- c()
+no_reads_sampled <- c()
 mean_rl = c()
 no_mapped_reads = c()
 sample_ids =c()
@@ -78,21 +81,45 @@ for (sample_id in factor(samplesheet$sample_id)) {
     mrl <- str_trim(gsub("Mean read length:", "",nanostat[grepl("Mean read length:", nanostat)]))
     mean_rl <- append(mean_rl, round(as.numeric(gsub(",", "", mrl))),2)
     
-    mr <- sum(abundance_table_display[,sample_id])
-    no_mapped_reads <- append(no_mapped_reads, round(mr,0))
+    mapped_reads <- sum(abundance_table_display[,sample_id])
+    no_mapped_reads <- append(no_mapped_reads, round(mapped_reads,0))
     sample_ids <- append(sample_ids, sample_id)
-
+    # Add the number of reads post host filtering to the table
+    nanostat_post_filter = readLines(paste0(path,"/",sample_id,"/merged_reads/",sample_id,"_nanostat_post_host_filter"))
+    rc_post_filter <- str_trim(gsub("Number of reads:", "",nanostat_post_filter[grepl("Number of reads:", nanostat_post_filter)]))
+    rc_post_filter <- round(as.numeric(gsub(",", "", rc_post_filter)),0)
+    no_reads_post_filter <- append(no_reads_post_filter, rc_post_filter)
+    
+    nanostat_sampled = readLines(paste0(path,"/",sample_id,"/merged_reads/",sample_id,"_nanostat_filtered_sampled"))
+    rc_sampled <- str_trim(gsub("Number of reads:", "",nanostat_sampled[grepl("Number of reads:", nanostat_sampled)]))
+    rc_sampled <- round(as.numeric(gsub(",", "", rc_sampled)),0)
+    no_reads_sampled <- append(no_reads_sampled, rc_sampled)
 }
 
-tmp_df <- data.frame(no_reads, mean_rl,  
+
+tmp_df <- data.frame(no_reads, mean_rl, no_reads_post_filter, no_reads_sampled, 
                       no_mapped_reads, sample_ids) 
 
 samplesheet <- samplesheet %>% 
     full_join(tmp_df, by = c("sample_id"="sample_ids")) 
 
 samplesheet <- samplesheet %>%
-  mutate(perc_mapped = round((no_mapped_reads/no_reads)*100,2))
-
+  mutate(perc_mapped = round((no_mapped_reads/no_reads_sampled)*100,2),
+         perc_human = round((1-(no_reads_post_filter/no_reads))*100,2))
+samplesheet <- samplesheet %>% 
+  rename(
+    "Barcode" = barcode,
+    "Sample ID" = sample_id,
+    "Number of raw reads" = no_reads,
+    "Mean read length" = mean_rl,
+    "Number of non-human reads" = no_reads_post_filter,
+    "% human reads" = perc_human, 
+    "Number of reads sampled" = no_reads_sampled,
+    "Number of reads mapped to database" = no_mapped_reads,
+    "% assigned reads" = perc_mapped,
+    )
+# Reorder columns
+samplesheet <- samplesheet[,c(1,2,4,3,5,9,6,7,8)]
 ```
 
 ```{r sample QC table, echo=FALSE, warning=FALSE}
