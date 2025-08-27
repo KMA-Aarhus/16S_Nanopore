@@ -79,7 +79,7 @@ for (sample_id in factor(samplesheet$sample_id)) {
     rc <- round(as.numeric(gsub(",", "", rc)),0)
     no_reads <- append(no_reads, rc)
     mrl <- str_trim(gsub("Mean read length:", "",nanostat[grepl("Mean read length:", nanostat)]))
-    mean_rl <- append(mean_rl, round(as.numeric(gsub(",", "", mrl))),2)
+    mean_rl <- append(mean_rl, round(as.numeric(gsub(",", "", mrl)),2))
     
     mapped_reads <- sum(abundance_table_display[,sample_id])
     no_mapped_reads <- append(no_mapped_reads, round(mapped_reads,0))
