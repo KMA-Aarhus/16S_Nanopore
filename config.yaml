@@ -5,4 +5,4 @@ samplesheet: "NA"
 #human_reference: "/project/ClinicalMicrobio/faststorage/database/GRCh38.p14_genomic.fna"
 human_reference: "~/16S_Nanopore/panel_files/GRCh38.p14_genomic.fna"
 emu_db: "~/16S_Nanopore/panel_files/emu_16s"
-live_analysis: True
+live_analysis: False
