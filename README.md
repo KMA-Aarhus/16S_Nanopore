@@ -21,10 +21,20 @@ Output:
 - A report containing QC and taksonomy results for each sample.
 
 ## Installation. 
-Requires conda, openpyxl and snakemake to run.  
+Requires conda, mamba, openpyxl and snakemake to run.  
 https://docs.conda.io/en/latest/miniconda.html. 
 https://openpyxl.readthedocs.io/en/stable/.  
 https://snakemake.readthedocs.io/en/stable/. 
+Currently an older version of snakemake and therefore it needs an older version of mamba to run (v1). To run on a computing cluster like genomeDK, drmaa is also require.
+´´´
+conda config --add channels bioconda
+conda config --add channels conda-forge 
+conda create --name snakemake
+conda install -n base mamba=1
+mamba install snakemake=7.32 python=3.9 pulp=2.7 openpyxl -c conda-forge
+pip install drmaa
+´´´
+
 
 Requires a downloaded emu 16S database and human reference. These should be specified in the config.yaml file.
 
