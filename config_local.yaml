@@ -1,0 +1,7 @@
+# General settings 
+rundir: "NA" # Defines where the raw uploads are placed.
+
+samplesheet: "NA"
+human_reference: "~/16S_Nanopore/panel_files/GRCh38.p14_genomic.fna"
+emu_db: "~/16S_Nanopore/panel_files/emu_16s"
+live_analysis: True
