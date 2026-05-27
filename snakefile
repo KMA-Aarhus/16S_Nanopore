@@ -273,6 +273,9 @@ rule merge_reads:
         barcode_dir = directory(lambda wildcards: workflow_table[workflow_table["sample_id"] == wildcards.sample_id]["barcode_path"].values[0])
     output: "{out_base}/{sample_id}/merged_reads/{sample_id}.fastq.gz"
     threads: 1
+    resources:
+        mem_mb = 100,
+        runtime = "10m"
     shell: """
 
     cat {input.barcode_dir}/* > {output}
@@ -286,6 +289,9 @@ rule nanostat:
         "{out_base}/{sample_id}/merged_reads/{sample_id}_nanostat"
     conda: "configs/nanostat.yaml"
     threads: 1
+    resources:
+        mem_mb=100,
+        runtime="10m"
     shell: """
 
     NanoStat --fastq {input} -o {out_base}/{wildcards.sample_id}/merged_reads/ -n {wildcards.sample_id}_nanostat
@@ -302,6 +308,9 @@ rule remove_human:
     params:
         human_reference = human_reference
     threads: 1
+    resources:
+        mem_mb=500,
+        runtime="10m"
     shell: """
     
     minimap2 -ax map-ont {params.human_reference} {input} > {wildcards.sample_id}.contam.sam
@@ -318,6 +327,9 @@ rule nanostat_post_host_filter:
         "{out_base}/{sample_id}/merged_reads/{sample_id}_nanostat_post_host_filter"
     conda: "configs/nanostat.yaml"
     threads: 1
+    resources:
+        mem_mb=100,
+        runtime="10m"
     shell: """
 
     NanoStat --fastq {input} -o {out_base}/{wildcards.sample_id}/merged_reads/ -n {wildcards.sample_id}_nanostat_post_host_filter
@@ -331,6 +343,9 @@ rule subsample:
         subsampled = "{out_base}/{sample_id}/merged_reads/{sample_id}_clean_sampled.fastq.gz"
     conda: "configs/seqtk.yaml"
     threads: 1
+    resources:
+        mem_mb=100,
+        runtime="10m"
     shell: """
     
     seqtk sample -s100 {input} 10000 | gzip > {output.subsampled}
@@ -345,6 +360,9 @@ rule nanostat_post_subsampling:
         "{out_base}/{sample_id}/merged_reads/{sample_id}_nanostat_filtered_sampled"
     conda: "configs/nanostat.yaml"
     threads: 1
+    resources:
+        mem_mb=100,
+        runtime="10m"
     shell: """
 
     NanoStat --fastq {input} -o {out_base}/{wildcards.sample_id}/merged_reads/ -n {wildcards.sample_id}_nanostat_filtered_sampled
@@ -362,6 +380,9 @@ rule emu_abundance:
     params:
         emu_db = emu_db
     threads: 4
+    resources:
+        mem_mb=1000,
+        runtime="3h"
     shell: """
     mkdir -p {out_base}/{wildcards.sample_id}/emu_abundance
     emu abundance --type map-ont {input} --threads {threads} --keep-files --keep-counts --output-unclassified --db {params.emu_db} --output-dir {out_base}/{wildcards.sample_id}/emu_abundance --output-basename {wildcards.sample_id}
@@ -379,6 +400,9 @@ rule aggregate_compare:
         family = "{out_base}/family_abundance_table.csv"
     conda: "configs/report.yaml"
     threads: 1
+    resources:
+        mem_mb=100,
+        runtime="10m"
     shell: """
     mkdir -p {out_base}/emu_abundance_tables
     find {out_base} -type f -name "*_rel-abundance.tsv" -exec cp {{}} {out_base}/emu_abundance_tables \\;
@@ -395,6 +419,9 @@ rule final_report:
         "{out_base}/final_report.html"
     conda: "configs/report.yaml"
     threads: 1
+    resources:
+        mem_mb=100,
+        runtime="10m"
     shell: """
 
         cp scripts/final_report.Rmd .
