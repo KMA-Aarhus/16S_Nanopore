@@ -274,7 +274,7 @@ rule merge_reads:
     output: "{out_base}/{sample_id}/merged_reads/{sample_id}.fastq.gz"
     threads: 1
     resources:
-        mem_mb = 100,
+        mem_mb = 500,
         runtime = "10m"
     shell: """
 
@@ -290,7 +290,7 @@ rule nanostat:
     conda: "configs/nanostat.yaml"
     threads: 1
     resources:
-        mem_mb=100,
+        mem_mb=500,
         runtime="10m"
     shell: """
 
@@ -309,8 +309,8 @@ rule remove_human:
         human_reference = human_reference
     threads: 1
     resources:
-        mem_mb=500,
-        runtime="10m"
+        mem_mb=16000,
+        runtime="30m"
     shell: """
     
     minimap2 -ax map-ont {params.human_reference} {input} > {wildcards.sample_id}.contam.sam
@@ -328,7 +328,7 @@ rule nanostat_post_host_filter:
     conda: "configs/nanostat.yaml"
     threads: 1
     resources:
-        mem_mb=100,
+        mem_mb=500,
         runtime="10m"
     shell: """
 
@@ -344,7 +344,7 @@ rule subsample:
     conda: "configs/seqtk.yaml"
     threads: 1
     resources:
-        mem_mb=100,
+        mem_mb=500,
         runtime="10m"
     shell: """
     
@@ -361,7 +361,7 @@ rule nanostat_post_subsampling:
     conda: "configs/nanostat.yaml"
     threads: 1
     resources:
-        mem_mb=100,
+        mem_mb=500,
         runtime="10m"
     shell: """
 
@@ -381,7 +381,7 @@ rule emu_abundance:
         emu_db = emu_db
     threads: 4
     resources:
-        mem_mb=1000,
+        mem_mb=16000,
         runtime="3h"
     shell: """
     mkdir -p {out_base}/{wildcards.sample_id}/emu_abundance
@@ -401,7 +401,7 @@ rule aggregate_compare:
     conda: "configs/report.yaml"
     threads: 1
     resources:
-        mem_mb=100,
+        mem_mb=500,
         runtime="10m"
     shell: """
     mkdir -p {out_base}/emu_abundance_tables
@@ -420,8 +420,8 @@ rule final_report:
     conda: "configs/report.yaml"
     threads: 1
     resources:
-        mem_mb=100,
-        runtime="10m"
+        mem_mb=500,
+        runtime="15m"
     shell: """
 
         cp scripts/final_report.Rmd .
