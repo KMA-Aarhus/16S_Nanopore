@@ -8,22 +8,20 @@ configfile: "config.yaml"
 rerun-incomplete: true
 # [--shadow-prefix DIR] 
 # [--reason] 
-# [--latency-wait SECONDS] 
+latency-wait: 30 # seconds
 # [--max-jobs-per-second MAX_JOBS_PER_SECOND] 
 # [--greediness GREEDINESS] 
 # [--runtime-profile FILE] 
 show-failed-logs: true
-drmaa: "
-    --mem-per-cpu={cluster.mem}
-    --cpus-per-task={cluster.cpus-per-task} 
-    --time={cluster.time} 
-    --account={cluster.account}
-    --error={cluster.error} 
-    --output={cluster.output}
-"
 
-cluster-config: "configs/cluster.yaml" 
+executor: slurm
+slurm-logdir: logs
 
+default-resources:
+  slurm_account: "ClinicalMicrobio"
+  cpus_per_task: 8
+  runtime: 600 # minutes... hopefully
+  mem_mb: 16000
 
 # [--jobscript SCRIPT] 
 jobname: "{name}.{jobid}.snakejob.sh" 
@@ -32,4 +30,4 @@ use-singularity: true
 # [--conda-prefix DIR] 
 
 
-# printshellcmds: True
+printshellcmds: True

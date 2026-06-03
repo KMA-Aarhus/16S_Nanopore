@@ -21,27 +21,31 @@ Output:
 - A report containing QC and taksonomy results for each sample.
 
 ## Installation. 
-Requires conda, mamba, openpyxl and snakemake to run.  
-https://docs.conda.io/en/latest/miniconda.html. 
-https://openpyxl.readthedocs.io/en/stable/.  
-https://snakemake.readthedocs.io/en/stable/. 
-Currently an older version of snakemake and therefore it needs an older version of mamba to run (v1). To run on a computing cluster like genomeDK, drmaa is also require.
-´´´
-conda config --add channels bioconda
-conda config --add channels conda-forge 
-conda create --name snakemake
-conda install -n base mamba=1
-mamba install snakemake=7.32 python=3.9 pulp=2.7 openpyxl -c conda-forge
-pip install drmaa
-´´´
 
-
-Requires a downloaded emu 16S database and human reference. These should be specified in the config.yaml file.
 
 ### Install with git
 ```
 git clone https://github.com/KMA-Aarhus/16S_Nanopore.git
 ```
+### Prerequisites
+Requires conda, mamba, openpyxl and snakemake to run.  
+https://docs.conda.io/en/latest/miniconda.html. 
+https://openpyxl.readthedocs.io/en/stable/.  
+https://snakemake.readthedocs.io/en/stable/. 
+
+The recommended way of installing prerequisites is by using the provided `pipeline_env.yaml` file.
+#### Using mamba
+```
+mamba env create --file configs/pipeline_env.yaml
+```
+#### Using conda
+```
+conda env create --file configs/pipeline_env.yaml
+```
+
+The pipeline also requires a downloaded emu 16S database and human reference. These should be specified in the config.yaml file.
+
+
 ## How to run
 The workflow is made for running on a local workstation as it is able to produce fast results which can assign taxonomies before the analysis is done running. Input can be specificied in the config.yaml file or alternatively as part of the snakemake cmd. The workflow requires as input:
 * A run directory (rundir)
@@ -53,10 +57,12 @@ To run:
 * Make sure your rundir exists and only contain sequencing data from one run as the scripts does not allow overlaps in barcodes.
 To run locally:
 ```
+conda activate 16s_nanopore_env
 snakemake --config rundir=<path_to_rundir>  samplesheet=<path_to_samplesheet>/  live_analysis=False --cores=1  --use-conda --conda-frontend mamba
 ```
 To utilise live_analysis which will produce results as soon as a fastq pass file is generated for a barcode, create a conda environment from the live_analysis.yaml file. Then add live_analysis=True to you command.
 ```
+conda activate 16s_nanopore_env
 snakemake --config rundir=<path_to_rundir>  samplesheet=<path_to_samplesheet>/  live_analysis=True --cores=1  --use-conda --conda-frontend mamba
 ```
 
