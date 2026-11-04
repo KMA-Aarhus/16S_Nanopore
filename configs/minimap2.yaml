@@ -3,5 +3,7 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
+  - ca-certificates >= 2026.10.19
+  - certifi  >= 2026.10.19
   - minimap2 = 2.28
   - samtools = 1.20

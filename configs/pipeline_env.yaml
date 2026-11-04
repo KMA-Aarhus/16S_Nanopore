@@ -4,7 +4,9 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
+  - ca-certificates >= 2026.10.19
+  - certifi  >= 2026.10.19
   - openpyxl
   - pandas>=2.0,<3
-  - snakemake=9.13
+  - snakemake=9.27.1
   - snakemake-executor-plugin-slurm
