@@ -3,5 +3,6 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-  - python = 3.10
-  - emu = 3.4.5
+  - ca-certificates >= 2026.10.19
+  - certifi  >= 2026.10.19
+  - emu = 3.6.2
