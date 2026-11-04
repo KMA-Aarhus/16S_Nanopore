@@ -3,7 +3,7 @@
 
 print("/*")
 __author__ = "Tine Ebsen, Kat Steinke" # Please add your name here if you make changes.
-__version__ = "0.2.1"
+__version__ = "0.2.2"
 
 import sys
 import os
